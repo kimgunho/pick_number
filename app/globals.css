@@ -359,7 +359,7 @@
   }
 
   .animate-confetti-burst {
-    animation: confetti-burst-big 3s ease-out forwards;
+    animation: confetti-burst-big 1.5s ease-out forwards;
   }
 
   @keyframes confetti-burst-big {
@@ -373,11 +373,11 @@
     }
     100% {
       transform: translate(
-          calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 300px)),
-          calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 300px))
+          calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 15vmin)),
+          calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 15vmin))
         )
-        rotate(calc(var(--rotation) + 1440deg)) scale(0);
-      opacity: 0;
+        rotate(calc(var(--rotation) + 1440deg)) scale(1);
+      opacity: 1;
     }
   }
 

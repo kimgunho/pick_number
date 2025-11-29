@@ -68,10 +68,6 @@ export default function RandomNumberPicker() {
     }
 
     setConfetti(particles);
-
-    setTimeout(() => {
-      setConfetti([]);
-    }, 3000);
   };
 
   const generateNeonLines = () => {
@@ -93,6 +89,9 @@ export default function RandomNumberPicker() {
 
   const generateRandomNumber = () => {
     playSound(clickSoundRef);
+
+    // 기존 confetti 제거
+    setConfetti([]);
 
     setIsSpinning(true);
     setIsShaking(true);
@@ -196,6 +195,30 @@ export default function RandomNumberPicker() {
         </div>
       )}
 
+      {confetti.length > 0 && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {confetti.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute rounded-full animate-confetti-burst"
+              style={
+                {
+                  left: "50%",
+                  top: "50%",
+                  width: `${particle.size}px`,
+                  height: `${particle.size}px`,
+                  backgroundColor: particle.color,
+                  boxShadow: `0 0 20px ${particle.color}, 0 0 40px ${particle.color}`,
+                  "--angle": `${particle.angle}rad`,
+                  "--velocity": particle.velocity,
+                  "--rotation": `${particle.rotation}deg`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </div>
+      )}
+
       {pickedNumbers.length > 0 && (
         <div className="fixed top-4 right-4 z-20 bg-card/80 backdrop-blur-md border-2 border-neon-cyan/50 rounded-lg p-3 max-w-[200px] max-h-[400px] overflow-y-auto">
           <div className="flex items-center justify-between mb-2">
@@ -280,30 +303,6 @@ export default function RandomNumberPicker() {
                 >
                   {currentNumber}
                 </div>
-              </div>
-            )}
-
-            {confetti.length > 0 && (
-              <div className="absolute inset-0 pointer-events-none overflow-visible">
-                {confetti.map((particle) => (
-                  <div
-                    key={particle.id}
-                    className="absolute rounded-full animate-confetti-burst"
-                    style={
-                      {
-                        left: "50%",
-                        top: "50%",
-                        width: `${particle.size}px`,
-                        height: `${particle.size}px`,
-                        backgroundColor: particle.color,
-                        boxShadow: `0 0 20px ${particle.color}, 0 0 40px ${particle.color}`,
-                        "--angle": `${particle.angle}rad`,
-                        "--velocity": particle.velocity,
-                        "--rotation": `${particle.rotation}deg`,
-                      } as React.CSSProperties
-                    }
-                  />
-                ))}
               </div>
             )}
           </div>
