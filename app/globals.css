@@ -139,17 +139,17 @@
 @layer utilities {
   /* Using CSS variables directly instead of theme() function */
   .neon-glow-cyan {
-    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), 0 0 80px
+    text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px
       var(--neon-cyan);
   }
 
   .neon-glow-pink {
-    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 80px
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px
       var(--neon-pink);
   }
 
   .neon-glow-yellow {
-    text-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-yellow), 0 0 80px
+    text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px
       var(--neon-yellow);
   }
 
@@ -179,10 +179,10 @@
       0 3px 0 rgba(0, 0, 0, 0.5),
       -3px 0 0 rgba(0, 0, 0, 0.5),
       3px 0 0 rgba(0, 0, 0, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Cyan text border - darker cyan (3px border) */
@@ -196,10 +196,10 @@
       0 3px 0 rgba(0, 168, 184, 0.5),
       -3px 0 0 rgba(0, 168, 184, 0.5),
       3px 0 0 rgba(0, 168, 184, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Pink text border - darker pink (3px border) */
@@ -213,10 +213,10 @@
       0 3px 0 rgba(179, 13, 107, 0.5),
       -3px 0 0 rgba(179, 13, 107, 0.5),
       3px 0 0 rgba(179, 13, 107, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Yellow text border - darker yellow (3px border) */
@@ -230,10 +230,10 @@
       0 3px 0 rgba(184, 154, 0, 0.5),
       -3px 0 0 rgba(184, 154, 0, 0.5),
       3px 0 0 rgba(184, 154, 0, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Subtle 1px text border with darker color matching text */
@@ -243,10 +243,10 @@
       1px -1px 0 rgba(0, 0, 0, 0.5),
       -1px 1px 0 rgba(0, 0, 0, 0.5),
       1px 1px 0 rgba(0, 0, 0, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Subtle border for cyan text (1px border) */
@@ -256,10 +256,10 @@
       1px -1px 0 rgba(0, 168, 184, 0.5),
       -1px 1px 0 rgba(0, 168, 184, 0.5),
       1px 1px 0 rgba(0, 168, 184, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Subtle border for pink text (1px border) */
@@ -269,10 +269,10 @@
       1px -1px 0 rgba(179, 13, 107, 0.5),
       -1px 1px 0 rgba(179, 13, 107, 0.5),
       1px 1px 0 rgba(179, 13, 107, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   /* Subtle border for yellow text (1px border) */
@@ -282,10 +282,10 @@
       1px -1px 0 rgba(184, 154, 0, 0.5),
       -1px 1px 0 rgba(184, 154, 0, 0.5),
       1px 1px 0 rgba(184, 154, 0, 0.5),
+      0 0 5px currentColor,
       0 0 10px currentColor,
       0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      0 0 40px currentColor;
   }
 
   .text-stroke {
