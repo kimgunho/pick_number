@@ -1,0 +1,45 @@
+import type { Metadata } from "next";
+import { Jua, Geist } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+
+const jua = Jua({ weight: "400", subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "굿텔레콤 송년회 랜덤 번호 선택기",
+  description: "굿텔레콤 송년회 랜덤 번호 선택기",
+  generator: "goodtelcom",
+  icons: {
+    icon: [
+      {
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: "/apple-icon.png",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ko">
+      <body className={`${jua.className} antialiased`}>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
+}
