@@ -264,7 +264,7 @@ export default function RandomNumberPicker() {
       <div className="relative z-10 w-full max-w-2xl mx-auto space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-5xl md:text-7xl font-bold tracking-wider">
-            <span className="text-neon-cyan neon-glow-cyan neon-text-subtle-border inline-block">굿텔레콤 송년회</span>
+            <span className="text-neon-cyan neon-glow-cyan neon-text-subtle-border inline-block">이플 그룹 송년회</span>
           </h1>
           <h2 className="text-4xl md:text-6xl font-bold tracking-wider">
             <span className="text-neon-pink neon-glow-pink neon-text-subtle-border inline-block">골라골라 당첨자</span>
