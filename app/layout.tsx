@@ -6,9 +6,9 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "굿텔레콤 송년회 랜덤 번호 선택기",
-  description: "굿텔레콤 송년회 랜덤 번호 선택기",
-  generator: "goodtelcom",
+  title: "이플 그룹 송년회 랜덤 번호 선택기",
+  description: "이플 그룹 송년회 랜덤 번호 선택기",
+  generator: "",
   icons: {
     // icon: [
     //   {

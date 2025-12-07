@@ -287,7 +287,7 @@ export default function RandomNumberPicker() {
 
             {currentNumber !== null && (
               <div
-                className={`w-[280px] h-[280px] border-8 border-neon-cyan neon-box-cyan rounded-2xl flex items-center justify-center bg-gradient-to-br from-neon-cyan/20 to-background backdrop-blur-sm transition-all duration-300 ${
+                className={`w-[420px] h-[300px] border-8 border-neon-cyan neon-box-cyan rounded-2xl flex items-center justify-center bg-gradient-to-br from-neon-cyan/20 to-background backdrop-blur-sm transition-all duration-300 ${
                   isSpinning ? "animate-spin-box scale-105" : "animate-reveal-box"
                 }`}
               >
@@ -354,8 +354,8 @@ export default function RandomNumberPicker() {
         </div> */}
       </div>
 
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-pink/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[400] h-[400] bg-neon-cyan/30 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400] h-[400] bg-neon-pink/30 rounded-full blur-[150px] pointer-events-none" />
     </main>
   );
 }
