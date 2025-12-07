@@ -27,6 +27,8 @@ export default function RandomNumberPicker() {
   const [currentNumber, setCurrentNumber] = useState<number | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
+  const [isPreExploding, setIsPreExploding] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
   const [minNumber, setMinNumber] = useState(1);
   const [maxNumber, setMaxNumber] = useState(100);
   const [confetti, setConfetti] = useState<Particle[]>([]);
@@ -42,6 +44,13 @@ export default function RandomNumberPicker() {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {});
+    }
+  };
+
+  const stopSound = (audioRef: React.MutableRefObject<HTMLAudioElement | null>) => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
   };
 
@@ -67,6 +76,26 @@ export default function RandomNumberPicker() {
     setConfetti(particles);
   };
 
+  const triggerExplosion = () => {
+    const particles: Particle[] = [];
+    const colors = ["#FF4500", "#FFD700", "#FFFFFF", "#FF69B4", "#FF0000"]; // Fire colors + Pink
+
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        id: Date.now() + i,
+        x: 50,
+        y: 50,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        angle: Math.random() * Math.PI * 2,
+        velocity: 10 + Math.random() * 20, // High velocity
+        size: 5 + Math.random() * 15,
+        rotation: Math.random() * 360,
+      });
+    }
+
+    setConfetti(particles);
+  };
+
   const generateNeonLines = () => {
     const lines: NeonLine[] = [];
     const colors = ["#00F5FF", "#FF1493", "#FFD700"];
@@ -84,21 +113,20 @@ export default function RandomNumberPicker() {
     setNeonLines(lines);
   };
 
-  const generateRandomNumber = () => {
-    playSound(clickSoundRef);
-
-    // 기존 confetti 제거
-    setConfetti([]);
-
+  const startSpinning = (playPartySound: boolean) => {
+    // Phase 3: Spin
+    setIsExploding(false);
+    setIsPreExploding(false);
     setIsSpinning(true);
-    setIsShaking(true);
-
+    setIsShaking(true); // Keeping the gentle shake during spin if desired, or can remove
     generateNeonLines();
 
     setTimeout(() => setIsShaking(false), 800);
 
     playSound(spinSoundRef);
-    playSound(partySoundRef);
+    if (playPartySound) {
+      playSound(partySoundRef);
+    }
 
     let count = 0;
     let speed = 50;
@@ -142,6 +170,7 @@ export default function RandomNumberPicker() {
         setIsSpinning(false);
         setNeonLines([]);
 
+        stopSound(spinSoundRef);
         playSound(winSoundRef);
         triggerConfetti();
       } else {
@@ -150,6 +179,32 @@ export default function RandomNumberPicker() {
     };
 
     spin();
+  };
+
+  const generateRandomNumber = () => {
+    playSound(clickSoundRef);
+    setConfetti([]);
+
+    // Check if we should show explosion (only if ? box is visible, which corresponds to currentNumber === null)
+    if (currentNumber === null) {
+      // Phase 1: Pre-explosion Shake (Violent)
+      setIsPreExploding(true);
+
+      setTimeout(() => {
+        // Phase 2: Explosion
+        setIsPreExploding(false);
+        setIsExploding(true);
+        playSound(partySoundRef); // Use party sound for explosion impact for now
+        triggerExplosion();
+
+        setTimeout(() => {
+          startSpinning(false);
+        }, 400); // Wait for explosion animation (400ms)
+      }, 600); // Wait for pre-explosion shake (600ms)
+    } else {
+      // Skip explosion, start spinning immediately
+      startSpinning(true);
+    }
   };
 
   const resetPicker = () => {
@@ -166,7 +221,7 @@ export default function RandomNumberPicker() {
   return (
     <main className="min-h-screen bg-background flex flex-col items-center justify-center p-4 relative overflow-hidden">
       <audio ref={clickSoundRef} src="/assets/sounds/click.mp3" preload="auto" />
-      <audio ref={spinSoundRef} src="/assets/sounds/spinning.mp3" preload="auto" />
+      <audio ref={spinSoundRef} src="/assets/sounds/spinning.mp3" preload="auto" loop />
       <audio ref={partySoundRef} src="/assets/sounds/party.mp3" preload="auto" />
       <audio ref={winSoundRef} src="/assets/sounds/ending.mp3" preload="auto" />
 
@@ -274,7 +329,7 @@ export default function RandomNumberPicker() {
             {currentNumber === null && (
               <div
                 className={`w-[280px] h-[280px] border-8 border-neon-yellow neon-box-yellow rounded-2xl flex items-center justify-center bg-gradient-to-br from-neon-yellow/20 to-neon-orange/20 backdrop-blur-sm transition-all duration-300 ${
-                  isShaking ? "animate-shake-box" : "animate-float-box"
+                  isExploding ? "animate-explode-out" : isPreExploding ? "animate-shake-violent" : isShaking ? "animate-shake-box" : "animate-float-box"
                 }`}
               >
                 <div className="text-[10rem] md:text-[14rem] font-bold text-neon-yellow neon-glow-yellow neon-text-subtle-border animate-pulse-question">?</div>
@@ -311,7 +366,7 @@ export default function RandomNumberPicker() {
               value={minNumber}
               onChange={(e) => setMinNumber(Number(e.target.value))}
               className="w-24 px-3 py-2 bg-card border-2 border-border rounded-lg text-center text-foreground focus:border-neon-cyan focus:outline-none transition-colors"
-              disabled={isSpinning}
+              disabled={isSpinning || isPreExploding || isExploding}
             />
           </div>
           <div className="hidden sm:block text-muted-foreground">—</div>
@@ -322,7 +377,7 @@ export default function RandomNumberPicker() {
               value={maxNumber}
               onChange={(e) => setMaxNumber(Number(e.target.value))}
               className="w-24 px-3 py-2 bg-card border-2 border-border rounded-lg text-center font-mono text-foreground focus:border-neon-pink focus:outline-none transition-colors"
-              disabled={isSpinning}
+              disabled={isSpinning || isPreExploding || isExploding}
             />
           </div>
         </div>
@@ -330,10 +385,10 @@ export default function RandomNumberPicker() {
         <div className="flex justify-center">
           <button
             onClick={generateRandomNumber}
-            disabled={isSpinning || pickedNumbers.length >= maxNumber - minNumber + 1}
+            disabled={isSpinning || pickedNumbers.length >= maxNumber - minNumber + 1 || isPreExploding || isExploding}
             className="px-12 py-5 text-2xl font-bold tracking-widest bg-transparent border-4 border-neon-pink text-neon-pink neon-glow-pink neon-text-subtle-border rounded-xl hover:bg-neon-pink/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 active:scale-95 hover:border-neon-cyan hover:text-neon-cyan hover:neon-glow-cyan"
           >
-            <span>{isSpinning ? "✨ ROLLING..." : "🎲 PICK NUMBER"}</span>
+            <span>{isPreExploding || isExploding ? "🔥 BREAKING..." : isSpinning ? "✨ ROLLING..." : "🎲 PICK NUMBER"}</span>
           </button>
         </div>
 
