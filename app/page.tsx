@@ -3,9 +3,6 @@
 import type React from "react";
 
 import { useState, useRef } from "react";
-import { Geist } from "next/font/google";
-
-const geist = Geist({ subsets: ["latin"] });
 
 interface Particle {
   id: number;
@@ -220,21 +217,21 @@ export default function RandomNumberPicker() {
       )}
 
       {pickedNumbers.length > 0 && (
-        <div className="fixed top-4 right-4 z-20 bg-card/80 backdrop-blur-md border-2 border-neon-cyan/50 rounded-lg p-3 max-w-[200px] max-h-[400px] overflow-y-auto">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs font-bold text-neon-cyan tracking-wider neon-text-border">당첨자 번호 목록</h3>
+        <div className="fixed top-4 right-4 z-20 bg-card/80 backdrop-blur-md border-2 border-neon-cyan/50 rounded-xl p-5 max-w-[340px] max-h-[600px] overflow-y-auto">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-bold text-neon-cyan tracking-wider neon-text-border">당첨자 번호 목록</h3>
             {/* <button onClick={resetAllNumbers} className="text-[10px] text-neon-pink hover:text-neon-yellow transition-colors" title="Reset all">
               ⟳
             </button> */}
           </div>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {pickedNumbers
               .slice()
               .reverse()
               .map((num, idx) => (
                 <div
                   key={`${num}-${idx}`}
-                  className={`w-10 h-10 flex items-center justify-center bg-neon-cyan/20 border border-neon-cyan rounded text-xs font-bold text-neon-cyan neon-text-border ${geist.className}`}
+                  className="w-14 h-14 flex items-center justify-center bg-neon-cyan/20 border-2 border-neon-cyan rounded-lg text-2xl font-bold text-neon-cyan neon-text-border"
                 >
                   {num}
                 </div>
@@ -280,9 +277,7 @@ export default function RandomNumberPicker() {
                   isShaking ? "animate-shake-box" : "animate-float-box"
                 }`}
               >
-                <div className={`text-[10rem] md:text-[14rem] font-bold text-neon-yellow neon-glow-yellow neon-text-subtle-border animate-pulse-question ${geist.className}`}>
-                  ?
-                </div>
+                <div className="text-[10rem] md:text-[14rem] font-bold text-neon-yellow neon-glow-yellow neon-text-subtle-border animate-pulse-question">?</div>
                 <div className="absolute top-6 left-6 w-4 h-4 bg-neon-yellow rounded-full neon-box-yellow animate-pulse" />
                 <div className="absolute top-6 right-6 w-4 h-4 bg-neon-yellow rounded-full neon-box-yellow animate-pulse" style={{ animationDelay: "0.2s" }} />
                 <div className="absolute bottom-6 left-6 w-4 h-4 bg-neon-yellow rounded-full neon-box-yellow animate-pulse" style={{ animationDelay: "0.4s" }} />
@@ -297,7 +292,7 @@ export default function RandomNumberPicker() {
                 }`}
               >
                 <div
-                  className={`text-9xl md:text-[10rem] font-bold text-neon-cyan neon-glow-cyan neon-text-subtle-border tabular-nums ${geist.className} ${
+                  className={`text-9xl md:text-[10rem] font-bold text-neon-cyan neon-glow-cyan neon-text-subtle-border tabular-nums ${
                     isSpinning ? "blur-md scale-125 animate-roll-numbers" : "animate-pop-number"
                   } transition-all duration-100`}
                 >
@@ -310,18 +305,18 @@ export default function RandomNumberPicker() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
           <div className="flex items-center gap-3">
-            <label className={`text-sm text-muted-foreground tracking-wider ${geist.className}`}>MIN</label>
+            <label className="text-sm text-muted-foreground tracking-wider">MIN</label>
             <input
               type="number"
               value={minNumber}
               onChange={(e) => setMinNumber(Number(e.target.value))}
-              className={`w-24 px-3 py-2 bg-card border-2 border-border rounded-lg text-center text-foreground focus:border-neon-cyan focus:outline-none transition-colors ${geist.className}`}
+              className="w-24 px-3 py-2 bg-card border-2 border-border rounded-lg text-center text-foreground focus:border-neon-cyan focus:outline-none transition-colors"
               disabled={isSpinning}
             />
           </div>
-          <div className={`hidden sm:block text-muted-foreground ${geist.className}`}>—</div>
+          <div className="hidden sm:block text-muted-foreground">—</div>
           <div className="flex items-center gap-3">
-            <label className={`text-sm text-muted-foreground tracking-wider ${geist.className}`}>MAX</label>
+            <label className="text-sm text-muted-foreground tracking-wider">MAX</label>
             <input
               type="number"
               value={maxNumber}
@@ -338,7 +333,7 @@ export default function RandomNumberPicker() {
             disabled={isSpinning || pickedNumbers.length >= maxNumber - minNumber + 1}
             className="px-12 py-5 text-2xl font-bold tracking-widest bg-transparent border-4 border-neon-pink text-neon-pink neon-glow-pink neon-text-subtle-border rounded-xl hover:bg-neon-pink/20 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 active:scale-95 hover:border-neon-cyan hover:text-neon-cyan hover:neon-glow-cyan"
           >
-            <span className={geist.className}>{isSpinning ? "✨ ROLLING..." : "🎲 PICK NUMBER"}</span>
+            <span>{isSpinning ? "✨ ROLLING..." : "🎲 PICK NUMBER"}</span>
           </button>
         </div>
 

@@ -139,153 +139,77 @@
 @layer utilities {
   /* Using CSS variables directly instead of theme() function */
   .neon-glow-cyan {
-    text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px
-      var(--neon-cyan);
+    color: transparent !important;
+    -webkit-text-stroke: 1.5px #e0ffff;
+    text-shadow: 0 0 2px #fff, 0 0 15px var(--neon-cyan), 0 0 35px var(--neon-cyan), 0 0 60px var(--neon-cyan) !important;
   }
 
   .neon-glow-pink {
-    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px
-      var(--neon-pink);
+    color: transparent !important;
+    -webkit-text-stroke: 1.5px #ffb6c1;
+    text-shadow: 0 0 2px #fff, 0 0 15px var(--neon-pink), 0 0 35px var(--neon-pink), 0 0 60px var(--neon-pink) !important;
   }
 
   .neon-glow-yellow {
-    text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px
-      var(--neon-yellow);
+    color: transparent !important;
+    -webkit-text-stroke: 1.5px #eee;
+    text-shadow: 0 0 2px #fff, 0 0 15px var(--neon-yellow), 0 0 35px var(--neon-yellow), 0 0 60px var(--neon-yellow) !important;
   }
 
   .neon-box-cyan {
-    box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), inset 0 0 10px
-      var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+    border-color: #fff;
   }
 
   .neon-box-yellow {
-    box-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-yellow), inset 0 0 10px
-      var(--neon-yellow);
+    box-shadow: 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-yellow), inset 0 0 10px var(--neon-yellow);
+    border-color: #fff;
   }
 
   .neon-box-pink {
-    box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 10px
-      var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+    border-color: #fff;
   }
 
-  /* Enhanced neon text border with darker outlines matching text color */
+  /* Enhanced neon text border - simpler, outline style */
   .neon-text-border {
-    text-shadow:
-      -3px -3px 0 rgba(0, 0, 0, 0.5),
-      3px -3px 0 rgba(0, 0, 0, 0.5),
-      -3px 3px 0 rgba(0, 0, 0, 0.5),
-      3px 3px 0 rgba(0, 0, 0, 0.5),
-      0 -3px 0 rgba(0, 0, 0, 0.5),
-      0 3px 0 rgba(0, 0, 0, 0.5),
-      -3px 0 0 rgba(0, 0, 0, 0.5),
-      3px 0 0 rgba(0, 0, 0, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    -webkit-text-stroke: 1px currentColor;
+    paint-order: stroke fill;
   }
 
-  /* Cyan text border - darker cyan (3px border) */
+  /* Cyan text border */
   .text-neon-cyan.neon-text-border {
-    text-shadow:
-      -3px -3px 0 rgba(0, 168, 184, 0.5),
-      3px -3px 0 rgba(0, 168, 184, 0.5),
-      -3px 3px 0 rgba(0, 168, 184, 0.5),
-      3px 3px 0 rgba(0, 168, 184, 0.5),
-      0 -3px 0 rgba(0, 168, 184, 0.5),
-      0 3px 0 rgba(0, 168, 184, 0.5),
-      -3px 0 0 rgba(0, 168, 184, 0.5),
-      3px 0 0 rgba(0, 168, 184, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 5px var(--neon-cyan), 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
   }
 
-  /* Pink text border - darker pink (3px border) */
+  /* Pink text border */
   .text-neon-pink.neon-text-border {
-    text-shadow:
-      -3px -3px 0 rgba(179, 13, 107, 0.5),
-      3px -3px 0 rgba(179, 13, 107, 0.5),
-      -3px 3px 0 rgba(179, 13, 107, 0.5),
-      3px 3px 0 rgba(179, 13, 107, 0.5),
-      0 -3px 0 rgba(179, 13, 107, 0.5),
-      0 3px 0 rgba(179, 13, 107, 0.5),
-      -3px 0 0 rgba(179, 13, 107, 0.5),
-      3px 0 0 rgba(179, 13, 107, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 5px var(--neon-pink), 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
   }
 
-  /* Yellow text border - darker yellow (3px border) */
+  /* Yellow text border */
   .text-neon-yellow.neon-text-border {
-    text-shadow:
-      -3px -3px 0 rgba(184, 154, 0, 0.5),
-      3px -3px 0 rgba(184, 154, 0, 0.5),
-      -3px 3px 0 rgba(184, 154, 0, 0.5),
-      3px 3px 0 rgba(184, 154, 0, 0.5),
-      0 -3px 0 rgba(184, 154, 0, 0.5),
-      0 3px 0 rgba(184, 154, 0, 0.5),
-      -3px 0 0 rgba(184, 154, 0, 0.5),
-      3px 0 0 rgba(184, 154, 0, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 5px var(--neon-yellow), 0 0 15px var(--neon-yellow), 0 0 30px var(--neon-yellow);
   }
 
-  /* Subtle 1px text border with darker color matching text */
+  /* Subtle 1px text border with glow */
   .neon-text-subtle-border {
-    text-shadow:
-      -1px -1px 0 rgba(0, 0, 0, 0.5),
-      1px -1px 0 rgba(0, 0, 0, 0.5),
-      -1px 1px 0 rgba(0, 0, 0, 0.5),
-      1px 1px 0 rgba(0, 0, 0, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px currentColor, 0 0 10px currentColor;
   }
 
-  /* Subtle border for cyan text (1px border) */
+  /* Subtle border for cyan text */
   .text-neon-cyan.neon-text-subtle-border {
-    text-shadow:
-      -1px -1px 0 rgba(0, 168, 184, 0.5),
-      1px -1px 0 rgba(0, 168, 184, 0.5),
-      -1px 1px 0 rgba(0, 168, 184, 0.5),
-      1px 1px 0 rgba(0, 168, 184, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 8px var(--neon-cyan), 0 0 20px var(--neon-cyan);
   }
 
-  /* Subtle border for pink text (1px border) */
+  /* Subtle border for pink text */
   .text-neon-pink.neon-text-subtle-border {
-    text-shadow:
-      -1px -1px 0 rgba(179, 13, 107, 0.5),
-      1px -1px 0 rgba(179, 13, 107, 0.5),
-      -1px 1px 0 rgba(179, 13, 107, 0.5),
-      1px 1px 0 rgba(179, 13, 107, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 8px var(--neon-pink), 0 0 20px var(--neon-pink);
   }
 
-  /* Subtle border for yellow text (1px border) */
+  /* Subtle border for yellow text */
   .text-neon-yellow.neon-text-subtle-border {
-    text-shadow:
-      -1px -1px 0 rgba(184, 154, 0, 0.5),
-      1px -1px 0 rgba(184, 154, 0, 0.5),
-      -1px 1px 0 rgba(184, 154, 0, 0.5),
-      1px 1px 0 rgba(184, 154, 0, 0.5),
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor;
+    text-shadow: 0 0 2px #fff, 0 0 8px var(--neon-yellow), 0 0 20px var(--neon-yellow);
   }
 
   .text-stroke {
@@ -349,11 +273,7 @@
       opacity: 1;
     }
     100% {
-      transform: translate(
-          calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 150px)),
-          calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 150px))
-        )
-        rotate(720deg) scale(0);
+      transform: translate(calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 150px)), calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 150px))) rotate(720deg) scale(0);
       opacity: 0;
     }
   }
@@ -372,10 +292,7 @@
       transform: translate(-50%, -50%) rotate(calc(var(--rotation) + 60deg)) scale(1.5);
     }
     100% {
-      transform: translate(
-          calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 15vmin)),
-          calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 15vmin))
-        )
+      transform: translate(calc(-50% + cos(var(--angle)) * calc(var(--velocity) * 15vmin)), calc(-50% + sin(var(--angle)) * calc(var(--velocity) * 15vmin)))
         rotate(calc(var(--rotation) + 1440deg)) scale(1);
       opacity: 1;
     }

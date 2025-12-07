@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Jua, Geist } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const jua = Jua({ weight: "400", subsets: ["latin"] });
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -36,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${jua.className} antialiased`}>
+      <body className={`${geist.className} antialiased`}>
         {children}
         <Analytics />
       </body>
