@@ -6,8 +6,8 @@ import "./globals.css";
 const geist = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "이플 그룹 송년회 랜덤 번호 선택기",
-  description: "이플 그룹 송년회 랜덤 번호 선택기",
+  title: "BorgWarner Lucky Draw Event",
+  description: "BorgWarner Lucky Draw Event",
   generator: "",
   icons: {
     // icon: [
